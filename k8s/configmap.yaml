@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: miniserve-config
+  namespace: default
+  labels:
+    app: miniserve
+data:
+  # Miniserve configuration via environment variables
+  MINISERVE_VERBOSE: "true"
+  MINISERVE_PORT: "8080"
+  MINISERVE_QRCODE: "true"
+  MINISERVE_ALLOWED_UPLOAD_DIR: "/uploads"
+  MINISERVE_MKDIR_ENABLED: "true"
+  MINISERVE_ALLOWED_RM_DIR: "/uploads"
+  MINISERVE_ENABLE_TAR: "true"
+  MINISERVE_ENABLE_TAR_GZ: "true"
+  MINISERVE_ENABLE_ZIP: "true"
+  MINISERVE_DIRS_FIRST: "true"
+  MINISERVE_SHOW_SYMLINK_INFO: "true"
+  MINISERVE_SHOW_WGET_FOOTER: "true"
+  MINISERVE_README: "true"
+  MINISERVE_DIRECTORY_SIZE: "true"
+  MINISERVE_WEB_UPLOAD_CONCURRENCY: "4"
+  MINISERVE_NOTIFICATION_TIMEOUT: "2000"
+  MINISERVE_RELOAD_DELAY: "1500"
+  MINISERVE_COLOR_SCHEME: "monokai"
+  MINISERVE_COLOR_SCHEME_DARK: "monokai"
+  MINISERVE_TITLE: "MicroK8s File Server"

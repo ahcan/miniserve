@@ -64,7 +64,7 @@ pub fn page(
     html! {
         (DOCTYPE)
         html {
-            (page_header(&title_path, conf.file_upload, conf.web_upload_concurrency, &conf.api_route, &conf.favicon_route, &conf.css_route))
+            (page_header(&title_path, conf.file_upload, conf.web_upload_concurrency, &conf.api_route, &conf.favicon_route, &conf.css_route, conf.notification_timeout, conf.reload_delay))
 
             body #drop-container
             {
@@ -684,6 +684,8 @@ fn page_header(
     api_route: &str,
     favicon_route: &str,
     css_route: &str,
+    notification_timeout: u32,
+    reload_delay: u32,
 ) -> Markup {
     html! {
         head {
@@ -770,6 +772,8 @@ fn page_header(
             @if file_upload {
                 script {
                     (format!("const CONCURRENCY = {web_file_concurrency};"))
+                    (format!("const NOTIFICATION_TIMEOUT = {notification_timeout};"))
+                    (format!("const RELOAD_DELAY = {reload_delay};"))
                     (PreEscaped(r#"
                     window.onload = function() {
                         // Constants
@@ -910,8 +914,8 @@ fn page_header(
                                 .finally(() => {
                                     updateUploadTextAndList();
                                     form.reset();
-                                    setTimeout(() => { uploadArea.classList.remove('active'); }, 1000)
-                                    setTimeout(() => { window.location.reload(); }, 1500)
+                                    setTimeout(() => { uploadArea.classList.remove('active'); }, NOTIFICATION_TIMEOUT)
+                                    setTimeout(() => { window.location.reload(); }, RELOAD_DELAY)
                                 })
 
                             updateUploadTextAndList();
@@ -1110,7 +1114,7 @@ pub fn render_error(
     html! {
         (DOCTYPE)
         html {
-            (page_header(&error_code.to_string(), false, conf.web_upload_concurrency, &conf.api_route, &conf.favicon_route, &conf.css_route))
+            (page_header(&error_code.to_string(), false, conf.web_upload_concurrency, &conf.api_route, &conf.favicon_route, &conf.css_route, 1000, 1500))
 
             body
             {

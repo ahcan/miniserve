@@ -448,6 +448,22 @@ pub struct CliArgs {
         default_value = "auto"
     )]
     pub log_color: LogColor,
+
+    /// Set the notification display time in milliseconds before hiding the upload notification
+    #[arg(
+        long = "notification-timeout",
+        env = "MINISERVE_NOTIFICATION_TIMEOUT",
+        default_value = "1000"
+    )]
+    pub notification_timeout: u32,
+
+    /// Set the page reload delay in milliseconds after file upload completes
+    #[arg(
+        long = "reload-delay",
+        env = "MINISERVE_RELOAD_DELAY",
+        default_value = "1500"
+    )]
+    pub reload_delay: u32,
 }
 
 /// Checks whether an interface is valid, i.e. it can be parsed into an IP address

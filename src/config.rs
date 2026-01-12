@@ -197,6 +197,12 @@ pub struct MiniserveConfig {
 
     /// Color choice for the log output
     pub log_color: LogColor,
+
+    /// Time in milliseconds to show notification before hiding it
+    pub notification_timeout: u32,
+
+    /// Time in milliseconds to wait before reloading page after upload completion
+    pub reload_delay: u32,
 }
 
 impl MiniserveConfig {
@@ -374,6 +380,8 @@ impl MiniserveConfig {
             show_exact_bytes,
             file_external_url: args.file_external_url,
             log_color: args.log_color,
+            notification_timeout: args.notification_timeout,
+            reload_delay: args.reload_delay,
         })
     }
 }

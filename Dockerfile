@@ -20,6 +20,6 @@ FROM docker.io/alpine
 RUN apk add --no-cache ca-certificates
 
 # Copy the built binary from builder stage
-COPY --from=builder --chmod=755 /usr/src/app/target/release/miniserve /app/
+COPY --from=builder  /usr/src/app/target/release/miniserve /app/
 
 ENTRYPOINT ["/app/miniserve"]

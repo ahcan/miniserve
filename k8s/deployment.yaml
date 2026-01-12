@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: miniserve
-        image: svenstaro/miniserve:latest
+        image: 172.27.223.7:32000/miniserve:latest
         ports:
         - containerPort: 8080
           name: http

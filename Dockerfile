@@ -22,4 +22,4 @@ RUN apk add --no-cache ca-certificates
 # Copy the built binary from builder stage
 COPY --from=builder  /usr/src/app/target/release/miniserve /app/
 
-ENTRYPOINT ["/app/miniserve"]
+ENTRYPOINT ["/app/miniserve", "/data"]
